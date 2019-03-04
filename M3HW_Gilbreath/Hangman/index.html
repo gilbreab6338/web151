@@ -1,0 +1,60 @@
+<!--
+WEB-151
+M3HW
+Hangman V1
+03/04/19
+-->
+<html>
+	<head>
+		<title>Hangman</title>
+	</head>
+	
+	<body>
+		<h1>Hangman</h1>
+		
+		<script>
+		//Word array
+		var words = [
+			"music",
+			"jazz",
+			"language",
+			"word"
+		];
+		//Random word
+		var word = words[Math.floor(Math.random() * words.length)];
+		//Letter array for answer
+		var answerArray = [];
+		for (var i = 0; i < word.length; i++) {
+			answerArray[i] = "_";
+		};
+		var remainingLetters = word.length;
+		//Game loop
+		while (remainingLetters > 0) {
+			//Progress update
+			alert(answerArray.join(" "));
+			
+			//Player input
+			var guess = prompt("Guess a letter, or click Cancel to stop playing.");
+			if (guess === null) {
+				//Exit loop
+				break;
+			}	else if (guess.length !== 1) {
+				//Input length
+				alert("Please enter a single letter.");
+			}	else {
+				//Update game with input
+				for (var j = 0; j< word.length; j++) {
+					if (word[j] === guess) {
+						answerArray[j] = guess;
+						remainingLetters--;
+					};
+				};
+			};
+		//End loop
+		};
+		//Answer
+		alert(answerArray.join(" "));
+		alert("Good job! The answer was " + word);		
+		</script>
+	</body>
+</html>
